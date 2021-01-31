@@ -12,7 +12,7 @@
 		<h1>Player</h1>
 		<div id="app">
 			<div v-if="gameStage == 'ASSIGN'">
-				<button v-on:click="claimTurn()">Claim</button>
+				<button v-on:click="claimTurn()">My turn!</button>
 			</div>
 
 			<div v-else-if="gameStage == 'CLUE'">

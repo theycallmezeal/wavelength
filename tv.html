@@ -6,12 +6,38 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1">
 		<script src="/socket.io/socket.io.js" defer></script>
 		<script src="https://unpkg.com/vue@next" defer></script>
-		<script src="tv.js" defer></script>
+		<script src="player.js" defer></script>
 	</head>
 	<body>
         <h1>TV</h1>
 		<div id="app">
-            {{ gameStage }}
+			<div v-if="gameStage == 'ASSIGN'">
+				<p>Claim the turn if you'd like to give a clue.</p>
+			</div>
+
+			<div v-else-if="gameStage == 'CLUE'">
+				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
+				<p>Wait for the clue giver to give a clue...</p>
+			</div>
+
+			<div v-else-if="gameStage == 'GUESS'">
+				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
+				<p>Clue</p>
+				<p>{{ clue }}</p>
+                <p>Your guess</p>
+                <p>{{ guess }}</p>
+			</div>
+
+			<div v-else-if="gameStage == 'REVEAL'">
+				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
+				<p>Clue</p>
+				<p>{{ clue }}</p>
+				<p>Answer</p>
+				<p>{{ answer }}</p>
+				<p>The team guessed</p>
+				<p>{{ guess }}</p>
+			</div>
+
 		</div>
 	</body>
 </html>

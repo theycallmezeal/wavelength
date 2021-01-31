@@ -26,7 +26,6 @@ var spectra = [
   ['good for you', 'bad for you']
 ]
 
-var listOfTVs = [];
 var gameStage = 'ASSIGN' // values: ASSIGN > CLUE > GUESS > REVEAL > ASSIGN > ...
 var spectrum = [];
 var clue = '';
@@ -41,14 +40,6 @@ function emitGame() {
     answer: answer,
     guess: guess
   });
-}
-
-function listOfConnections() {
-  var list = [];
-  for (var i of io.of("/").adapter.rooms.keys()) {
-    list.push(i);
-  }
-  return list;
 }
 
 function randomFromList(list) {
