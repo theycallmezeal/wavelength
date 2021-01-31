@@ -11,9 +11,6 @@
 	<body>
 		<h1>Player</h1>
 		<div id="app">
-			<p>gameStage: {{ gameStage }}</p>
-			<p>isClueGiver: {{ isClueGiver }}</p>
-
 			<div v-if="gameStage == 'ASSIGN'">
 				<button v-on:click="claimTurn()">Claim</button>
 			</div>
@@ -21,9 +18,11 @@
 			<div v-else-if="gameStage == 'CLUE'">
 				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
 				<div v-if="isClueGiver">
-					<p>Answer: {{ answer }}</p>
-					<input type="text" id="clue">
-					<button v-on:click="submitClue()">Submit</button>
+					<p>Answer</p>
+					<p>{{ answer }}</p>
+					<p>Your clue</p>
+					<p><input type="text" id="clue"></p>
+					<p><button v-on:click="submitClue()">Submit</button></p>
 				</div>
 				<div v-else>
 					<p>Wait for the clue giver to give a clue...</p>
@@ -32,26 +31,31 @@
 
 			<div v-else-if="gameStage == 'GUESS'">
 				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
+				<p>Clue</p>
 				<p>{{ clue }}</p>
 				<div v-if="isClueGiver">
 					<p>Wait for the team to guess...</p>
 				</div>
 				<div v-else>
+					<p>Your guess</p>
 					<p>{{ guess }}</p>
-					<button v-on:click="addToGuess(-10)">&leftarrow; 10</button>
-					<button v-on:click="addToGuess(-1)">&leftarrow; 1</button>
-					<button v-on:click="addToGuess(1)">1 &rightarrow;</button>
-					<button v-on:click="addToGuess(10)">10 &rightarrow;</button>
-					<button v-on:click="submitGuess()">Submit</button>
+					<p><button v-on:click="addToGuess(-10)">&leftarrow; 10</button></p>
+					<p><button v-on:click="addToGuess(-1)">&leftarrow; 1</button></p>
+					<p><button v-on:click="addToGuess(1)">1 &rightarrow;</button></p>
+					<p><button v-on:click="addToGuess(10)">10 &rightarrow;</button></p>
+					<p><button v-on:click="submitGuess()">Submit</button></p>
 				</div>	
 			</div>
 
 			<div v-else-if="gameStage == 'REVEAL'">
 				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
+				<p>Clue</p>
 				<p>{{ clue }}</p>
-				<p>Answer: {{ answer }}</p>
-				<p>Guess: {{ guess }}</p>
-				<button v-on:click="endRound()">Another round!</button>
+				<p>Answer</p>
+				<p>{{ answer }}</p>
+				<p>You guessed</p>
+				<p>{{ guess }}</p>
+				<p><button v-on:click="endRound()">Another round!</button></p>
 			</div>
 
 		</div>

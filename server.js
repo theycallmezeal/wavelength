@@ -56,7 +56,6 @@ function randomFromList(list) {
 }
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
   emitGame();
 
   socket.on('disconnect', () => {
