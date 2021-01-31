@@ -10,12 +10,8 @@ app.get('/tv', (req, res) => {
   res.sendFile(__dirname + '/tv.html');
 });
 
-app.get('/player.js', function(req, res){
-	res.sendFile(__dirname + '/player.js');
-});
-
-app.get('/tv.js', function(req, res){
-	res.sendFile(__dirname + '/tv.js');
+app.get('/client.js', function(req, res){
+	res.sendFile(__dirname + '/client.js');
 });
 
 var spectra = [
