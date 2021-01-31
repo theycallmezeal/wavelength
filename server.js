@@ -18,14 +18,24 @@ app.get('/tv.js', function(req, res){
 	res.sendFile(__dirname + '/tv.js');
 });
 
+var spectra = [
+  ['sexy', 'unsexy'],
+  ['red', 'blue'],
+  ['safe', 'dangerous'],
+  ['underrated', 'overrated'],
+  ['good for you', 'bad for you']
+]
+
 var listOfTVs = [];
 var gameStage = 'ASSIGN' // values: ASSIGN > CLUE > GUESS > REVEAL > ASSIGN > ...
 var clueGiver = '';
+var spectrum = [];
 
 function emitGame() {
   console.log(listOfConnections());
   io.emit('emit game', {
-    gameStage: gameStage
+    gameStage: gameStage,
+    spectrum: spectrum
   });
 }
 
@@ -35,6 +45,10 @@ function listOfConnections() {
     list.push(i);
   }
   return list;
+}
+
+function randomFromList(list) {
+  return list[Math.floor(Math.random() * list.length)];
 }
 
 io.on('connection', (socket) => {
@@ -52,6 +66,7 @@ io.on('connection', (socket) => {
 
   socket.on('claim turn', () => {
     gameStage = 'CLUE';
+    spectrum = randomFromList(spectra);
     emitGame();
   });
 });

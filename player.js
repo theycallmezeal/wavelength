@@ -4,7 +4,8 @@ var app = Vue.createApp({
     data: function () {
         return {
             gameStage: "",
-            isClueGiver: false
+            isClueGiver: false,
+            spectrum: []
         }
     },
     methods: {
@@ -17,4 +18,5 @@ var app = Vue.createApp({
 
 socket.on('emit game', function(data) {
     app.gameStage = data['gameStage'];
+    app.spectrum = data['spectrum'];
 })
