@@ -19,11 +19,13 @@ app.get('/tv.js', function(req, res){
 });
 
 var listOfTVs = [];
+var gameStage = 'ASSIGN' // values: ASSIGN > CLUE > GUESS > REVEAL > ASSIGN > ...
+var clueGiver = '';
 
 function emitGame() {
   console.log(listOfConnections());
-  io.emit('emitGame', {
-
+  io.emit('emit game', {
+    gameStage: gameStage
   });
 }
 
@@ -46,9 +48,12 @@ io.on('connection', (socket) => {
 
   socket.on('register as tv', () => {
     listOfTVs.push(socket.id);
-    console.log('list of tvs:');
-    console.log(listOfTVs);
-  })
+  });
+
+  socket.on('claim turn', () => {
+    gameStage = 'CLUE';
+    emitGame();
+  });
 });
 
 http.listen(3000, () => {

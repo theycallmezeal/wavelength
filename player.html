@@ -9,7 +9,22 @@
 		<script src="player.js" defer></script>
 	</head>
 	<body>
+		<h1>Player</h1>
 		<div id="app">
+			<p>gameStage: {{ gameStage }}</p>
+			<p>isClueGiver: {{ isClueGiver }}</p>
+
+			<div v-if="gameStage == 'ASSIGN'">
+				<button v-on:click="claimTurn()">Claim</button>
+			</div>
+			<div v-else-if="gameStage == 'CLUE'">
+				<div v-if="isClueGiver">
+					<p>Give a clue...</p>
+				</div>
+				<div v-else>
+					<p>Wait for the clue giver to give a clue...</p>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

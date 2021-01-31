@@ -4,10 +4,11 @@ socket.emit('register as tv');
 var app = Vue.createApp({
     data: function () {
         return {
-            
+            gameStage: ""
         }
     }
 }).mount("#app");
 
-socket.on('emitGame', function(data) {
+socket.on('emit game', function(data) {
+    app.gameStage = data['gameStage'];
 })
