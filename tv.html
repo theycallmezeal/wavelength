@@ -23,20 +23,20 @@
 
 			<div v-else-if="gameStage == 'GUESS'">
 				<div class="spectrum-endpoints"><p>{{ spectrum[0] }}</p><p>{{ spectrum[1] }}</p></div>
-				<p>Clue</p>
-				<p>{{ clue }}</p>
-                <p>Your guess</p>
-                <p>{{ guess }}</p>
+				<p class="eyebrow">Clue</p>
+				<p class="data">{{ clue }}</p>
+                <p class="eyebrow">Your guess</p>
+                <div class="spectrum"><div v-bind:style="{ width: guess + '%' }"></div></div>
 			</div>
 
 			<div v-else-if="gameStage == 'REVEAL'">
 				<div class="spectrum-endpoints"><p>{{ spectrum[0] }}</p><p>{{ spectrum[1] }}</p></div>
-				<p>Clue</p>
-				<p>{{ clue }}</p>
-				<p>Answer</p>
-				<p>{{ answer }}</p>
-				<p>The team guessed</p>
-				<p>{{ guess }}</p>
+				<p class="eyebrow">Clue</p>
+				<p class="data">{{ clue }}</p>
+				<p class="eyebrow">Answer</p>
+				<div class="spectrum"><div v-bind:style="{ width: answer + '%' }"></div></div>
+				<p class="eyebrow">The team guessed</p>
+				<div class="spectrum"><div v-bind:style="{ width: guess + '%' }"></div></div>
 			</div>
 		</div>
 	</body>
