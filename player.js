@@ -31,4 +31,5 @@ socket.on('emit game', function(data) {
     app.spectrum = data['spectrum'];
     app.clue = data['clue'];
     app.answer = data['answer'];
+    app.guess= data['guess'];
 })

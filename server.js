@@ -39,7 +39,8 @@ function emitGame() {
     gameStage: gameStage,
     spectrum: spectrum,
     clue: clue,
-    answer: answer
+    answer: answer,
+    guess: guess
   });
 }
 
