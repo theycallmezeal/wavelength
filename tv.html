@@ -4,24 +4,25 @@
 		<title>Wavelength</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1">
+		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="/socket.io/socket.io.js" defer></script>
 		<script src="https://unpkg.com/vue@next" defer></script>
 		<script src="client.js" defer></script>
 	</head>
 	<body>
-        <h1>TV</h1>
+        <h1>Wavelength</h1>
 		<div id="app">
 			<div v-if="gameStage == 'ASSIGN'">
 				<p>Claim the turn if you'd like to give a clue.</p>
 			</div>
 
 			<div v-else-if="gameStage == 'CLUE'">
-				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
+				<div class="spectrum-endpoints"><p>{{ spectrum[0] }}</p><p>{{ spectrum[1] }}</p></div>
 				<p>Wait for the clue giver to give a clue...</p>
 			</div>
 
 			<div v-else-if="gameStage == 'GUESS'">
-				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
+				<div class="spectrum-endpoints"><p>{{ spectrum[0] }}</p><p>{{ spectrum[1] }}</p></div>
 				<p>Clue</p>
 				<p>{{ clue }}</p>
                 <p>Your guess</p>
@@ -29,7 +30,7 @@
 			</div>
 
 			<div v-else-if="gameStage == 'REVEAL'">
-				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
+				<div class="spectrum-endpoints"><p>{{ spectrum[0] }}</p><p>{{ spectrum[1] }}</p></div>
 				<p>Clue</p>
 				<p>{{ clue }}</p>
 				<p>Answer</p>
@@ -37,7 +38,6 @@
 				<p>The team guessed</p>
 				<p>{{ guess }}</p>
 			</div>
-
 		</div>
 	</body>
 </html>

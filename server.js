@@ -10,6 +10,10 @@ app.get('/tv', (req, res) => {
   res.sendFile(__dirname + '/tv.html');
 });
 
+app.get('/style.css', function(req, res){
+	res.sendFile(__dirname + '/style.css');
+});
+
 app.get('/client.js', function(req, res){
 	res.sendFile(__dirname + '/client.js');
 });
