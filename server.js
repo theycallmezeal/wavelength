@@ -30,13 +30,16 @@ var listOfTVs = [];
 var gameStage = 'ASSIGN' // values: ASSIGN > CLUE > GUESS > REVEAL > ASSIGN > ...
 var spectrum = [];
 var clue = '';
+var answer = 1;
+var guess = 50;
 
 function emitGame() {
   console.log(listOfConnections());
   io.emit('emit game', {
     gameStage: gameStage,
     spectrum: spectrum,
-    clue: clue
+    clue: clue,
+    answer: answer
   });
 }
 
@@ -68,6 +71,7 @@ io.on('connection', (socket) => {
   socket.on('claim turn', () => {
     gameStage = 'CLUE';
     spectrum = randomFromList(spectra);
+    answer = Math.floor(Math.random() * 100) + 1;
     emitGame();
   });
 

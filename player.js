@@ -6,7 +6,9 @@ var app = Vue.createApp({
             gameStage: "",
             isClueGiver: false,
             spectrum: [],
-            clue: ""
+            clue: "",
+            answer: 1,
+            guess: 50
         }
     },
     methods: {
@@ -28,4 +30,5 @@ socket.on('emit game', function(data) {
     app.gameStage = data['gameStage'];
     app.spectrum = data['spectrum'];
     app.clue = data['clue'];
+    app.answer = data['answer'];
 })

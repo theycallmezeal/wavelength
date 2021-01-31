@@ -20,6 +20,7 @@
 			<div v-else-if="gameStage == 'CLUE'">
 				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
 				<div v-if="isClueGiver">
+					<p>Answer: {{ answer }}</p>
 					<input type="text" id="clue">
 					<button v-on:click="submitClue()">Submit</button>
 				</div>
@@ -34,7 +35,8 @@
 					<p>Wait for the clue giver to give a clue...</p>
 				</div>
 				<div v-else>
-					<p>Guess!</p>
+					<p>{{ guess }}</p>
+					<button>Submit</button>
 				</div>	
 			</div>
 		</div>
