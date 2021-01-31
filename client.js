@@ -3,9 +3,11 @@ var socket = io();
 var app = Vue.createApp({
     data: function () {
         return {
-            foo: 5
+            numClients: 5
         }
     }
-});
+}).mount("#app");
 
-app.mount("#app");
+socket.on('emitGame', function(data) {
+    app.numClients = data['numClients'];
+})

@@ -10,10 +10,21 @@ app.get('/client.js', function(req, res){
 	res.sendFile(__dirname + '/client.js');
 });
 
+var numClients = 0;
+
+function emitGame() {
+  io.emit('emitGame', {"numClients": numClients});
+}
+
 io.on('connection', (socket) => {
   console.log('a user connected');
+  numClients++;
+  emitGame();
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
+    numClients--;
+    emitGame();
   });
 });
 
