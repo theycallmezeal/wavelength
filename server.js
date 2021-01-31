@@ -81,6 +81,17 @@ io.on('connection', (socket) => {
     emitGame();
   });
 
+  socket.on('add to guess', (delta) => {
+    guess += delta;
+    if (guess < 1) {
+      guess = 1;
+    }
+    if (guess > 100) {
+      guess = 100;
+    }
+    emitGame();
+  })
+
   socket.on('guess', () => {
     gameStage = 'REVEAL';
     emitGame();

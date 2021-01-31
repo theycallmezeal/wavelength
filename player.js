@@ -24,6 +24,10 @@ var app = Vue.createApp({
             }
         },
 
+        addToGuess: function (delta) {
+            socket.emit('add to guess', delta)
+        },
+
         submitGuess: function () {
             socket.emit('guess');
         },

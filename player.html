@@ -34,10 +34,14 @@
 				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
 				<p>{{ clue }}</p>
 				<div v-if="isClueGiver">
-					<p>Wait for the clue giver to give a clue...</p>
+					<p>Wait for the team to guess...</p>
 				</div>
 				<div v-else>
 					<p>{{ guess }}</p>
+					<button v-on:click="addToGuess(-10)">&leftarrow; 10</button>
+					<button v-on:click="addToGuess(-1)">&leftarrow; 1</button>
+					<button v-on:click="addToGuess(1)">1 &rightarrow;</button>
+					<button v-on:click="addToGuess(10)">10 &rightarrow;</button>
 					<button v-on:click="submitGuess()">Submit</button>
 				</div>	
 			</div>
