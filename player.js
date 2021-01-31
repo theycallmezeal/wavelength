@@ -3,7 +3,7 @@ var socket = io();
 var app = Vue.createApp({
     data: function () {
         return {
-            gameStage: "",
+            gameStage: "ASSIGN",
             isClueGiver: false,
             spectrum: [],
             clue: "",
@@ -22,6 +22,14 @@ var app = Vue.createApp({
             if (providedClue) {
                 socket.emit('give clue', providedClue);
             }
+        },
+
+        submitGuess: function () {
+            socket.emit('guess');
+        },
+
+        endRound: function () {
+            socket.emit('end round');
         }
     }
 }).mount("#app");
@@ -32,4 +40,13 @@ socket.on('emit game', function(data) {
     app.clue = data['clue'];
     app.answer = data['answer'];
     app.guess= data['guess'];
-})
+});
+
+socket.on('reset', function() {
+    app.gameStage = "ASSIGN";
+    app.isClueGiver = false;
+    app.spectrum = [];
+    app.clue = "";
+    app.answer = 1;
+    app.guess = 50;
+});

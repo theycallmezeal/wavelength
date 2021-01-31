@@ -34,7 +34,6 @@ var answer = 1;
 var guess = 50;
 
 function emitGame() {
-  console.log(listOfConnections());
   io.emit('emit game', {
     gameStage: gameStage,
     spectrum: spectrum,
@@ -80,6 +79,20 @@ io.on('connection', (socket) => {
     gameStage = 'GUESS';
     clue = providedClue;
     emitGame();
+  });
+
+  socket.on('guess', () => {
+    gameStage = 'REVEAL';
+    emitGame();
+  })
+
+  socket.on('end round', () => {
+    gameStage = 'ASSIGN';
+    var spectrum = [];
+    var clue = '';
+    var answer = 1;
+    var guess = 50;
+    io.emit('reset');
   })
 });
 

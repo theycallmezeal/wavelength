@@ -17,6 +17,7 @@
 			<div v-if="gameStage == 'ASSIGN'">
 				<button v-on:click="claimTurn()">Claim</button>
 			</div>
+
 			<div v-else-if="gameStage == 'CLUE'">
 				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
 				<div v-if="isClueGiver">
@@ -28,6 +29,7 @@
 					<p>Wait for the clue giver to give a clue...</p>
 				</div>
 			</div>
+
 			<div v-else-if="gameStage == 'GUESS'">
 				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
 				<p>{{ clue }}</p>
@@ -36,9 +38,18 @@
 				</div>
 				<div v-else>
 					<p>{{ guess }}</p>
-					<button>Submit</button>
+					<button v-on:click="submitGuess()">Submit</button>
 				</div>	
 			</div>
+
+			<div v-else-if="gameStage == 'REVEAL'">
+				<p>{{ spectrum[0] }} ---- {{ spectrum[1] }}</p>
+				<p>{{ clue }}</p>
+				<p>Answer: {{ answer }}</p>
+				<p>Guess: {{ guess }}</p>
+				<button v-on:click="endRound()">Another round!</button>
+			</div>
+
 		</div>
 	</body>
 </html>
