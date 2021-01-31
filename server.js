@@ -89,10 +89,10 @@ io.on('connection', (socket) => {
 
   socket.on('end round', () => {
     gameStage = 'ASSIGN';
-    var spectrum = [];
-    var clue = '';
-    var answer = 1;
-    var guess = 50;
+    spectrum = [];
+    clue = '';
+    answer = 1;
+    guess = 50;
     io.emit('reset');
   })
 });
