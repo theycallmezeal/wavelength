@@ -17,7 +17,6 @@
 			</div>
 
 			<div v-else-if="gameStage == 'CLUE'">
-				<div class="spectrum-endpoints"><p>{{ spectrum[0] }}</p><p>{{ spectrum[1] }}</p></div>
 				<div v-if="isClueGiver">
 					<p class="eyebrow">Answer</p>
 					<div class="spectrum"><div v-bind:style="{ width: answer + '%' }"></div></div>
@@ -31,15 +30,10 @@
 			</div>
 
 			<div v-else-if="gameStage == 'GUESS'">
-				<div class="spectrum-endpoints"><p>{{ spectrum[0] }}</p><p>{{ spectrum[1] }}</p></div>
-				<p class="eyebrow">Clue</p>
-				<p class="data">{{ clue }}</p>
 				<div v-if="isClueGiver">
 					<p>Wait for the team to guess...</p>
 				</div>
 				<div v-else>
-					<p class="eyebrow">Your guess</p>
-					<div class="spectrum"><div v-bind:style="{ width: guess + '%' }"></div></div>
 					<div id="guess-buttons">
 						<p><button v-on:click="addToGuess(-10)">&leftarrow; a lot</button></p>
 						<p><button v-on:click="addToGuess(10)">a lot &rightarrow;</button></p>
@@ -51,13 +45,6 @@
 			</div>
 
 			<div v-else-if="gameStage == 'REVEAL'">
-				<div class="spectrum-endpoints"><p>{{ spectrum[0] }}</p><p>{{ spectrum[1] }}</p></div>
-				<p class="eyebrow">Clue</p>
-				<p class="data">{{ clue }}</p>
-				<p class="eyebrow">Answer</p>
-				<div class="spectrum"><div v-bind:style="{ width: answer + '%' }"></div></div>
-				<p class="eyebrow">You guessed</p>
-				<div class="spectrum"><div v-bind:style="{ width: guess + '%' }"></div></div>
 				<p><button v-on:click="endRound()">Another round!</button></p>
 			</div>
 		</div>
