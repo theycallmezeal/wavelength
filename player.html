@@ -20,7 +20,7 @@
 				<div class="spectrum-endpoints"><p>{{ spectrum[0] }}</p><p>{{ spectrum[1] }}</p></div>
 				<div v-if="isClueGiver">
 					<p class="eyebrow">Answer</p>
-					<p class="data">{{ answer }}</p>
+					<div class="spectrum"><div v-bind:style="{ width: answer + '%' }"></div></div>
 					<p class="eyebrow">Your clue</p>
 					<p><input type="text" id="clue"></p>
 					<p><button v-on:click="submitClue()">Submit</button></p>
@@ -39,7 +39,7 @@
 				</div>
 				<div v-else>
 					<p class="eyebrow">Your guess</p>
-					<p class="data">{{ guess }}</p>
+					<div class="spectrum"><div v-bind:style="{ width: guess + '%' }"></div></div>
 					<div id="guess-buttons">
 						<p><button v-on:click="addToGuess(-10)">&leftarrow; a lot</button></p>
 						<p><button v-on:click="addToGuess(10)">a lot &rightarrow;</button></p>
@@ -55,9 +55,9 @@
 				<p class="eyebrow">Clue</p>
 				<p class="data">{{ clue }}</p>
 				<p class="eyebrow">Answer</p>
-				<p class="data">{{ answer }}</p>
+				<div class="spectrum"><div v-bind:style="{ width: answer + '%' }"></div></div>
 				<p class="eyebrow">You guessed</p>
-				<p class="data">{{ guess }}</p>
+				<div class="spectrum"><div v-bind:style="{ width: guess + '%' }"></div></div>
 				<p><button v-on:click="endRound()">Another round!</button></p>
 			</div>
 		</div>
