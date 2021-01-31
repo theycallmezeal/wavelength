@@ -28,14 +28,15 @@ var spectra = [
 
 var listOfTVs = [];
 var gameStage = 'ASSIGN' // values: ASSIGN > CLUE > GUESS > REVEAL > ASSIGN > ...
-var clueGiver = '';
 var spectrum = [];
+var clue = '';
 
 function emitGame() {
   console.log(listOfConnections());
   io.emit('emit game', {
     gameStage: gameStage,
-    spectrum: spectrum
+    spectrum: spectrum,
+    clue: clue
   });
 }
 
@@ -69,6 +70,12 @@ io.on('connection', (socket) => {
     spectrum = randomFromList(spectra);
     emitGame();
   });
+
+  socket.on('give clue', (providedClue) => {
+    gameStage = 'GUESS';
+    clue = providedClue;
+    emitGame();
+  })
 });
 
 http.listen(3000, () => {

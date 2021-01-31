@@ -5,13 +5,21 @@ var app = Vue.createApp({
         return {
             gameStage: "",
             isClueGiver: false,
-            spectrum: []
+            spectrum: [],
+            clue: ""
         }
     },
     methods: {
         claimTurn: function () {
             socket.emit('claim turn');
             this.isClueGiver = true;
+        },
+
+        submitClue: function () {
+            providedClue = document.getElementById("clue").value;
+            if (providedClue) {
+                socket.emit('give clue', providedClue);
+            }
         }
     }
 }).mount("#app");
@@ -19,4 +27,5 @@ var app = Vue.createApp({
 socket.on('emit game', function(data) {
     app.gameStage = data['gameStage'];
     app.spectrum = data['spectrum'];
+    app.clue = data['clue'];
 })
