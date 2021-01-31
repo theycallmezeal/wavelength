@@ -4,7 +4,8 @@ var app = Vue.createApp({
     data: function () {
         return {
             numClients: 0,
-            isTV: false
+            isTV: false,
+            assignedNumber: 0
         }
     }
 }).mount("#app");
@@ -12,4 +13,5 @@ var app = Vue.createApp({
 socket.on('emitGame', function(data) {
     app.numClients = data['numClients'];
     app.isTV = app.isTV || data['numClients'] == 1;
+    app.assignedNumber = data['assignedNumber'];
 })

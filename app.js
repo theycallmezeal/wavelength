@@ -11,6 +11,7 @@ app.get('/client.js', function(req, res){
 });
 
 var numClients = 0;
+var tvID = '';
 
 function emitGame() {
   io.emit('emitGame', {"numClients": numClients});
@@ -19,6 +20,9 @@ function emitGame() {
 io.on('connection', (socket) => {
   console.log('a user connected');
   numClients++;
+  if (numClients == 1) {
+    tvID = socket.id;
+  }
   emitGame();
 
   socket.on('disconnect', () => {
